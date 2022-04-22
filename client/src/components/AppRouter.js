@@ -1,9 +1,10 @@
+import { observer } from 'mobx-react-lite'
 import React, { useContext } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Context } from '../index'
 import { authRoutes, publicRoutes } from '../routes'
 
-const AppRouter = () => {
+const AppRouter = observer(() => {
   const { user } = useContext(Context)
   console.log(user)
   return (
@@ -19,6 +20,6 @@ const AppRouter = () => {
       <Route path="*" element={<Navigate to="/"> </Navigate>} />
     </Routes>
   )
-}
+})
 
 export default AppRouter

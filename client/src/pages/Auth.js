@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Card, Container, Form, Row } from 'react-bootstrap'
 import { NavLink, useLocation } from 'react-router-dom'
+import { login, registration } from '../http/userAPI'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/consts'
 
 const Auth = () => {
   const location = useLocation()
   const isLogin = location.pathname === LOGIN_ROUTE
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const click = async () => {
+    if (isLogin) {
+      const response = await login()
+    } else {
+      const response = await registration(email, password)
+      console.log(response)
+    }
+  }
 
   return (
     <Container
@@ -18,10 +29,15 @@ const Auth = () => {
           <Form.Control
             className="mt-3"
             placeholder="Введите ваш емайл"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
           <Form.Control
             className="mt-3"
             placeholder="Введите ваш пароль"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
           ></Form.Control>
           <Row className="d-flex justify-content-between mt-3 ps-3 pe-3">
             {isLogin ? (
@@ -38,6 +54,7 @@ const Auth = () => {
             <Button
               variant={'outline-success'}
               className="d-flex justify-content-between"
+              onClick={click}
             >
               {isLogin ? 'Войти' : 'Зарегистрироваться'}
             </Button>
