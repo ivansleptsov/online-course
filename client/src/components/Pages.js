@@ -8,8 +8,8 @@ const Pages = observer(() => {
   const pageCount = Math.ceil(device.totalCount / device.limit)
   const pages = []
 
-  for (let i = 0; i < pageCount; i++) {
-    pages.push(i + 1)
+  for (let i = 1; i <= pageCount; i++) {
+    pages.push(i)
   }
   return (
     <Pagination className="mt-3">
