@@ -15,6 +15,7 @@ const CreateDevice = observer(({ show, onHide }) => {
   const [price, setPrice] = useState(0)
   const [file, setFile] = useState('null')
   const [info, setInfo] = useState([])
+  const [brandName, setBrandName] = useState('')
 
   useEffect(() => {
     fetchTypes().then((data) => device.setTypes(data))
@@ -40,6 +41,7 @@ const CreateDevice = observer(({ show, onHide }) => {
     formData.append('name', name)
     formData.append('price', `${price}`)
     formData.append('img', file)
+    formData.append('brandName', device.selectedBrand.name)
     formData.append('brandId', device.selectedBrand.id)
     formData.append('typeId', device.selectedType.id)
     formData.append('info', JSON.stringify(info))
