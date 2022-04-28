@@ -33,7 +33,7 @@ export default class DeviceStore {
   }
 
   setPage(page) {
-    this.__page = page
+    this._page = page
   }
 
   setTotalCount(count) {
