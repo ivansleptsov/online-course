@@ -9,6 +9,7 @@ const DevicePage = () => {
 
   useEffect(() => {
     fetchOneDevice(id).then((data) => setDevice(data))
+    // eslint-disable-next-line
   }, [])
 
   return (
